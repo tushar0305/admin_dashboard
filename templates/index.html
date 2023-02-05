@@ -1,0 +1,156 @@
+{% extends 'layout.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{url_for('dashboard')}}">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+
+  <section class="section dashboard">
+    <div class="row">
+      <!-- Left side columns -->
+      <div class="col-lg-8">
+        <div class="row">
+
+          <!-- Total Devices Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card sales-card">
+              <div class="card-body">
+                <h5 class="card-title">Total devices</h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-motherboard"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{total_devices}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Total Devices Card -->
+
+          <!-- New Devices Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">New Devices</h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-motherboard"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{new_devices}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End New Devices Card -->
+
+          <!-- Users Card -->
+          <div class="col-xxl-4 col-xl-12">
+            <div class="card info-card customers-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Users</h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{total_user}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Users Card -->
+
+          <!-- Users List -->
+          <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+
+              <div class="card-body">
+                <h5 class="card-title">Users List</h5>
+
+                <table class="table table-borderless datatable css-serial">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Total Device</th>
+                      <th scope="col">Phone No.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in user %}
+                    <tr>
+                      <td scope="row"></td>
+                      <td>{{user.uname}}</td>
+                      <td>{{user.uemail}}</td>
+                      <td>{{user.totaldev}}</td>
+                      <td>{{user.uphone}}</td>
+                    </tr>
+                    {%endfor%}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- End Users List -->
+        </div>
+      </div>
+      <!-- End Left side columns -->
+
+      <!-- Right side columns -->
+      <div class="col-lg-4">
+        <!-- Users Graph -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Pie Chart</h5>
+
+              <!-- Pie Chart -->
+              <canvas id="pieChart" style="max-height: 400px;"></canvas>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new Chart(document.querySelector('#pieChart'), {
+                    type: 'pie',
+                    data: {
+                      labels: [
+                        'Start Devices',
+                        'Stop Devices',
+                        'New Devices'
+                      ],
+                      datasets: [{
+                        label: 'Total number',
+                        data: ["{{start}}", "{{stop}}", "{{new_devices}}"],
+                        backgroundColor: [
+                          'rgb(46,202,106)',
+                          'rgb(255, 99, 132)',
+                          'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                      }]
+                    }
+                  });
+                });
+              </script>
+              <!-- End Pie CHart -->
+
+          </div>
+        </div>
+        <!-- End Right side columns -->
+      </div>
+  </section>
+</main>
+<!-- End #main -->
+{% endblock %}

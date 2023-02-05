@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Advance Settings</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/static/img/favicon.png" rel="icon">
+    <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/static/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/static/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/static/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/static/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="" class="logo d-flex align-items-center">
+                <center><img src="/static/img/logo.png" alt="">
+                    <span class="d-none d-lg-block">ThinkfinityLabs</span>
+            </a>
+        </div>
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="/static/img/logo.png" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">ThinkfinityLabs</span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>ThinkfinityLabs</h6>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{url_for('login')}}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{url_for('advance')}}">
+                    <i class="bi bi-people"></i>
+                    <span>Add Company</span>
+                </a>
+            </li><!-- End Add User Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url_for('company') }}">
+                    <i class="bi bi-laptop"></i>
+                    <span>Company List</span>
+                </a>
+            </li><!-- End Device-List Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{url_for('logout')}}">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li><!-- End Login Page Nav -->
+
+        </ul>
+    </aside><!-- End Sidebar-->
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Add Company</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Forms</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <section class="section">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Company Details</h5>
+
+                    <!-- Multi Columns Form -->
+                    <form class="row g-3" action="{{ url_for('advance') }}" method="post" enctype="multipart/form-data">
+                        <div class="col-mb-3">
+                            <label for="inputNumber" class="col-sm-2 col-form-label">Company Logo</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="formFile" type="file" name="file">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputName5" class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="inputName5", name="name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputEmail5" class="form-label">Company Email</label>
+                            <input type="email" class="form-control" id="inputEmail5" name="email">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputPassword5" class="form-label">Company Password</label>
+                            <input type="password" class="form-control" id="inputPassword5" name="password">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputPhone5" class="form-label">Phone No.</label>
+                            <input type="phonenumber" class="form-control" id="inputPhone5" name="phone">
+                        </div>
+                        <div class="col-12">
+                            <label for="inputAddress5" class="form-label"> Company Address</label>
+                            <input type="text" class="form-control" id="inputAddres5s" placeholder="1234 Main St" name="address">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputCity" class="form-label">Company City</label>
+                            <input type="text" class="form-control" id="inputCity" name="city">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputState" class="form-label">Company State</label>
+                            <select id="state" name="state" class="form-select">
+                                <option selected>Choose...</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                <option value="Daman and Diu">Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                              </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="inputZip" class="form-label">Company Zip</label>
+                            <input type="text" class="form-control" id="inputZip" name="zip">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </form><!-- End Multi Columns Form -->
+        </section>
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <a href="https://thinkfinitylabs.com/"><strong><span>Thinkfinity Labs pvt.
+                        Ltd</span></strong></a>. All Rights Reserved
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/static/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/chart.js/chart.umd.js"></script>
+    <script src="/static/vendor/echarts/echarts.min.js"></script>
+    <script src="/static/vendor/quill/quill.min.js"></script>
+    <script src="/static/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="/static/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/static/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

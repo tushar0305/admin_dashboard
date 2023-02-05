@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block title %}User List{% endblock %}
+{% block content %}
+<main id="main" class="main">
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card" style="height: 100%; width: 200%;">
+          <div class="card-body">
+            <h5 class="card-title">Users List</h5>
+            <!-- Table with stripped rows -->
+            <table class="table table-striped datatable css-serial">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">TotalDevice</th>
+                  <th scope="col">Open User</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in user %}
+                  <tr>
+                    <td scope="row"></td>
+                    <td>{{user.uname}}</td>
+                    <td>{{user.uemail}}</td>
+                    <td>{{user.totaldev}}</td>
+                    <td>
+                      <a href="{{ url_for('user') }}">
+                        <form action="{{ url_for('user') }}" method="POST">
+                          <button class="button" name="user_selection" value={{user.uid}} >
+                            Open
+                              <i class="bi bi-box-arrow-up-right"></i>
+                          </button>
+                        </form>
+                      </a>
+                    </td>
+                  </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main><!-- End #main -->
+{% endblock %}

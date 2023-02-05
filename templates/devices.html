@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+{% block title %}Devices{% endblock %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).on('click', '.ajax-button', function() {
+    var itemId = $(this).parent().data('id');
+    // perform AJAX request using itemId
+    var currentText = $(this).text();
+
+      // Change the text and background color of the button based on its current state
+      if (currentText === "off") {
+        $(this).text("On");
+        $(this).css("background-color", "green");
+        // Send a POST request to the Flask server with data
+        $.ajax({
+          url: 'devices',
+          type: 'POST',
+          data: { state: "on" , deviceid: itemId},
+          success: function (response) {
+            console.log("Successfully turned on");
+          }
+        });
+      } else {
+        $(this).text("off");
+        $(this).css("background-color", "gray");
+        // Send a POST request to the Flask server with data
+        $.ajax({
+          url: 'devices',
+          type: 'POST',
+          data: { state: "off", deviceid: itemId},
+          success: function (response) {
+            console.log("Successfully turned off");
+          }
+        });
+      }
+  });
+</script>
+<main id="main" class="main">
+  <section class="section">
+    <div class="row">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Sold Devices</h5>
+              <!-- Table with stripped rows -->
+              <table class="table table-striped datatable css-serial">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for device in sold %}
+                  <tr>
+                    <td scope="row"></td>
+                    <td>{{device.dname}}</td>
+                    <td>
+                      <div class="item" data-id="{{device.deviceid}}">
+                        <button onclick="return confirm('Are you sure?');" class="badge ajax-button" id="on-off-button" style="background-color: gray;">{{device.mstate}}</button>
+                      </div>
+                    </td>
+                  </tr>
+                  {%endfor%}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+            </div>
+          </div>
+        </div>
+
+        <!-- User Table -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Availiable Devices</h5>
+              <!-- Table with stripped rows -->
+              <table class="table table-striped datatable css-serial">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for device in unsold %}
+                  <tr>
+                    <td scope="row"></td>
+                    <td>{{device.dname}}</td>
+                    <td><button type="button" class="btn btn-warning">Pending</button></td>
+                  </tr>
+                  {%endfor%}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main><!-- End #main -->
+{% endblock %}
